@@ -1,26 +1,31 @@
 <?php
-// Connection.php - MySQL Database Connection
-// Reads credentials from .env file in the project root (one level up)
-// Copy .env.example to .env and fill in your credentials
+// Connection.php
+// Works both locally (reads .env file) and on Railway (reads environment variables directly)
 
-// Load .env file if it exists
+// Try to load .env file if it exists (for local development)
 $envFile = __DIR__ . '/../.env';
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0) continue; // skip comments
+        if (strpos(trim($line), '#') === 0) continue;
         if (strpos($line, '=') !== false) {
             list($key, $value) = explode('=', $line, 2);
-            $_ENV[trim($key)] = trim($value);
+            $k = trim($key);
+            $v = trim($value);
+            if (!isset($_ENV[$k]) && !getenv($k)) {
+                putenv("$k=$v");
+                $_ENV[$k] = $v;
+            }
         }
     }
 }
 
-$host     = $_ENV['DB_HOST']     ?? 'localhost';
-$dbname   = $_ENV['DB_NAME']     ?? 'sales';
-$username = $_ENV['DB_USER']     ?? 'root';
-$password = $_ENV['DB_PASSWORD'] ?? '';
-$port     = $_ENV['DB_PORT']     ?? '3306';
+// Read from environment (works for both .env and Railway variables)
+$host     = getenv('DB_HOST')     ?: (getenv('MYSQLHOST')     ?: 'localhost');
+$dbname   = getenv('DB_NAME')     ?: (getenv('MYSQLDATABASE') ?: 'sales');
+$username = getenv('DB_USER')     ?: (getenv('MYSQLUSER')     ?: 'root');
+$password = getenv('DB_PASSWORD') ?: (getenv('MYSQLPASSWORD') ?: '');
+$port     = getenv('DB_PORT')     ?: (getenv('MYSQLPORT')     ?: '3306');
 
 try {
     $pdo = new PDO(
@@ -34,9 +39,8 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // Don't expose full error in production; log it instead
     error_log('DB Connection Error: ' . $e->getMessage());
     http_response_code(500);
-    die(json_encode(['error' => 'Database connection failed. Check your .env settings.']));
+    die(json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]));
 }
 ?>
