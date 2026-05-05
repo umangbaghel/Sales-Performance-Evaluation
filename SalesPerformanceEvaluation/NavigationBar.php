@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// NavigationBar.php
 // NavigationBar.php
 // Fixed: removed session_start() - already called in the dashboard files
 // Fixed: Dashboard link now stays on the correct dashboard based on role
