@@ -1,0 +1,19 @@
+# Environment variables - NEVER commit this
+.env
+
+# macOS
+.DS_Store
+__MACOSX/
+
+# Logs
+*.log
+logs/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp files
+tmp/
