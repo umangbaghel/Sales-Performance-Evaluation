@@ -18,7 +18,7 @@ $dashboardLink = $roleMap[$role] ?? 'DashBoardAdmin.php';
 </div>
 <div class="sidebar-section">Navigation</div>
 <a href="<?= $dashboardLink ?>" class="active">
-    <span class="icon">📊</span> Dashboard
+    <img class="icon nav-brand-icon" src="sales-performance-logo.png" alt="Sales Performance logo"> Dashboard
 </a>
 <div class="sidebar-bottom">
     <a href="Logout.php" class="sign-out">

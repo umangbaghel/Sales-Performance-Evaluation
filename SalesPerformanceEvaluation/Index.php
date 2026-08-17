@@ -10,8 +10,8 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
     font-family: 'Inter', -apple-system, sans-serif;
-    background: #0d1117;
-    color: #e6edf3;
+    background: #ffffff;
+    color: #1f2937;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -28,27 +28,37 @@ body {
     margin-bottom: 28px;
 }
 .brand-icon {
-    width: 48px; height: 48px;
-    background: #161b22;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-    margin: 0 auto 14px;
+    width: 200px; height: 172px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+.brand-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 .brand h1 {
-    font-size: 1.1rem;
+    font-size: 1.65rem;
     font-weight: 600;
-    color: #e6edf3;
+    color: #1f2937;
     letter-spacing: -0.3px;
 }
-.brand h1 span { color: #4493f8; }
-.brand p { color: #7d8590; font-size: 0.8rem; margin-top: 4px; }
+.brand h1 span {
+    color: #ffffff;
+    background: #4493f8;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+.brand p { color: #64748b; font-size: 0.8rem; margin-top: 4px; }
 .card {
-    background: #161b22;
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     border-radius: 10px;
     padding: 24px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 .form-group { margin-bottom: 16px; }
 .form-group label {
@@ -57,16 +67,16 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.6px;
-    color: #7d8590;
+    color: #64748b;
     margin-bottom: 6px;
 }
 .form-control {
     width: 100%;
-    background: #0d1117;
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
     padding: 9px 12px;
-    color: #e6edf3;
+    color: #1f2937;
     font-family: 'Inter', sans-serif;
     font-size: 0.875rem;
     outline: none;
@@ -97,8 +107,8 @@ body {
 }
 .btn:hover { background: #3a82e0; box-shadow: 0 0 0 3px rgba(68,147,248,0.2); }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.divider { border:none; border-top: 1px solid rgba(255,255,255,0.08); margin: 20px 0; }
-.hint { text-align: center; font-size: 0.75rem; color: #7d8590; }
+.divider { border:none; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+.hint { text-align: center; font-size: 0.75rem; color: #64748b; }
 .error-msg {
     margin-top: 12px;
     padding: 10px 12px;
@@ -118,19 +128,21 @@ body {
 <body>
 <div class="wrap">
     <div class="brand">
-        <div class="brand-icon">📊</div>
-        <h1><span>Sales</span> Performance</h1>
+        <div class="brand-icon">
+            <img src="sales-performance-logo.png" alt="Sales Performance logo">
+        </div>
+        <h1><span>Sales Performance</span></h1>
         <p>Sign in to your dashboard</p>
     </div>
     <div class="card">
         <form id="loginForm">
             <div class="form-group">
                 <label>Employee Code</label>
-                <input type="text" class="form-control" name="agentCode" placeholder="e.g. 00005" autocomplete="username">
+                <input type="text" class="form-control" name="agentCode" placeholder="Enter Code" autocomplete="username">
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter password" autocomplete="current-password">
+                <input type="password" class="form-control" name="password" placeholder="Enter Password" autocomplete="current-password">
             </div>
             <button type="submit" class="btn" id="loginBtn">Sign In</button>
             <div class="error-msg" id="errorMsg"></div>

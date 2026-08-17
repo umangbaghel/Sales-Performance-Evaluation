@@ -56,6 +56,20 @@ body {
 
 .topbar-brand span { color: var(--accent); }
 
+.topbar-brand-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.topbar-brand-title {
+    color: #fff !important;
+    background: var(--accent);
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
 .topbar-user {
     display: flex;
     align-items: center;
@@ -122,6 +136,11 @@ body {
     width: 20px;
     text-align: center;
     flex-shrink: 0;
+}
+
+.sidebar a .nav-brand-icon {
+    height: 20px;
+    object-fit: contain;
 }
 
 .sidebar .sign-out { color: var(--danger) !important; margin-top: 4px; }

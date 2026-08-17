@@ -26,7 +26,10 @@ $roleCounts = array_column($roleData, 'count');
 </head>
 <body>
 <nav class="topbar">
-    <div class="topbar-brand">📊 <span>Sales</span>Performance</div>
+    <div class="topbar-brand">
+        <img class="topbar-brand-logo" src="sales-performance-logo.png" alt="Sales Performance logo">
+        <span class="topbar-brand-title">Sales Performance</span>
+    </div>
     <div class="topbar-user">
         <span>Admin</span>
         <span class="user-badge"><?= htmlspecialchars($_SESSION['emp_id']) ?></span>
